@@ -3,7 +3,6 @@ from typing import Any, Callable
 
 from pydantic import BaseModel
 
-from .dependencies import Dependency
 
 
 class Registry:
@@ -98,16 +97,6 @@ class Registry:
             config = instance.model_dump()
         return config
 
-    def get_dependencies(self, category: str, identifier: str) -> list[Dependency]:
-        """Get dependencies for a specific component."""
-        cls = self.get(category, identifier)
-        if hasattr(cls, "_required_dependencies"):
-            return cls._required_dependencies  # type: ignore[no-any-return]
-        return []
-
-    def get_all_dependencies_for_categories(self, category_types: list[tuple[str, str]]) -> list[Dependency]:
-        """Get all unique dependencies for a list of (category, type) pairs."""
-        all_deps = []
         seen_modules = set()
 
         for category, identifier in category_types:

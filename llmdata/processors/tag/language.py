@@ -2,13 +2,11 @@ from typing import Any
 
 from pydantic import Field
 
-from llmdata.core.dependencies import requires
 from llmdata.core.ops import MapFn, Row
 from llmdata.core.registry import components
 from llmdata.core.utils import get_field, set_field
 
 
-@requires("fasttext")
 @components.add("tag", "language")
 class LanguageTagger(MapFn):
     """Tag text with language detection using FastText.

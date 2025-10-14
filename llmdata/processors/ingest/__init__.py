@@ -5,7 +5,7 @@ from pydantic import Field
 
 from llmdata.core.ops import MapFn, Row
 from llmdata.core.registry import components
-from llmdata.core.utils import get_field, set_field
+from llmdata.core.utils import get_field
 
 
 @components.add("ingest", "base")

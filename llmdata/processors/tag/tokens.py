@@ -2,13 +2,11 @@ from typing import Any
 
 from pydantic import Field, PrivateAttr
 
-from llmdata.core.dependencies import requires
 from llmdata.core.ops import MapFn, Row
 from llmdata.core.registry import components
 from llmdata.core.utils import get_field, set_field, silence
 
 
-@requires("transformers")
 @components.add("tag", "token_count")
 class TokenCountTagger(MapFn):
     """Count tokens in text using a specified tokenizer.

@@ -3,13 +3,11 @@ from typing import Any
 
 from pydantic import Field
 
-from llmdata.core.dependencies import requires
 from llmdata.core.ops import MapFn, Row
 from llmdata.core.registry import components
 from llmdata.core.utils import get_field, set_field
 
 
-@requires("ftfy")
 @components.add("format", "ftfy")
 class FTFYFormatter(MapFn):
     """Formatter that uses ftfy to fix text encoding issues.

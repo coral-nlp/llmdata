@@ -9,7 +9,6 @@ from presidio_anonymizer.entities import OperatorConfig
 from pydantic import Field
 from ray.util.actor_pool import ActorPool
 
-from llmdata.core.dependencies import Dependency, requires
 from llmdata.core.ops import MapFn, Row
 from llmdata.core.registry import components
 from llmdata.core.utils import get_field, set_field, silence
@@ -515,10 +514,6 @@ def _get_or_create_actor_pool(**kwargs: Any) -> PresidioPIIActorPool:
     return _presidio_pii_actor_pool
 
 
-@requires(
-    Dependency(module="presidio_analyzer", package="presidio-analyzer"),
-    Dependency(module="presidio_anonymizer", package="presidio-anonymizer"),
-)
 @components.add("format", "pii_presidio")
 class PresidioPIIFormatter(MapFn):
     """Removes personal identifiable information (PII) from text."""

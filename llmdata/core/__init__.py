@@ -1,5 +1,4 @@
 from .config import PipelineConfig, ProcessorConfig, RayConfig, get_default_ray_config
-from .dependencies import Dependency, requires
 from .ops import FilterFn, MapFn, ReduceFn, Row
 from .pipeline import DataPipeline
 from .registry import components
@@ -12,10 +11,8 @@ __all__ = [
     "MapFn",
     "FilterFn",
     "ReduceFn",
-    "requires",
     "components",
     "Row",
-    "Dependency",
     "get_field",
     "set_field",
 ]

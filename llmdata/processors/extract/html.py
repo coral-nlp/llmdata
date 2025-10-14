@@ -1,9 +1,8 @@
 from pydantic import Field
 
-from llmdata.core import MapFn, Row, components, get_field, requires, set_field
+from llmdata.core import MapFn, Row, components, get_field, set_field
 
 
-@requires("trafilatura")
 @components.add("extract", "html")
 class HTMLExtractor(MapFn):
     """Extract text from HTML content.

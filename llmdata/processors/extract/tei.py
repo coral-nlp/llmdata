@@ -2,7 +2,6 @@ from typing import TYPE_CHECKING, Any, Literal
 
 from pydantic import Field, PrivateAttr
 
-from llmdata.core.dependencies import requires
 from llmdata.core.ops import MapFn, Row
 from llmdata.core.registry import components
 from llmdata.core.utils import get_field, set_field
@@ -389,7 +388,6 @@ class TEIParser:
         return self._process_children(element)
 
 
-@requires("lxml")
 @components.add("extract", "tei")
 class TEIExtractor(MapFn):
     """Extract text from TEI XML format.
