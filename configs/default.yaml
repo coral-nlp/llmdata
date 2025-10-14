@@ -1,0 +1,70 @@
+name: "default"
+description: "Default config"
+input:
+  format: "parquet"
+  path: "<input_path>"
+processors:
+  - category: "ingest"
+    type: "base"
+    params:
+      name: "ingest_and_add_meta"
+      id_column: "id"
+      text_column: "text"
+      source_name_or_column: "<source_dataset_name>"
+      subset_name_or_column: "<source_dataset_subset>"
+      license_name_or_column: "<source_dataset_license_name_or_column>"
+  - category: "extract"
+    type: "tei"
+  - category: "format"
+    type: "ftfy"
+  - category: "format"
+    type: "spacing"
+  - category: "tag"
+    type: "language"
+    params:
+      max_tokens: 65536
+  - category: "tag"
+    type: "token_count"
+  - category: "tag"
+    type: "ocr_quality"
+  - category: "tag"
+    type: "gopher_quality"
+  - category: "tag"
+    type: "gopher_repetition"
+  - category: "filter"
+    type: "language"
+    params:
+      allowed_languages: ["de"]
+      min_confidence: 0.65
+  - category: "filter"
+    type: "token_count"
+  - category: "filter"
+    type: "ocr_quality"
+  - category: "filter"
+    type: "gopher_quality"
+  - category: "filter"
+    type: "gopher_repetition"
+  - category: "format"
+    type: "pii_regex"
+  - category: "tag"
+    type: "token_count"
+    params:
+      on: "text"
+      to: "num_tokens"
+  - category: "filter"
+    type: "token_count"
+    params:
+      on: "num_tokens"
+  - category: "tag"
+    type: "perplexity"
+    params:
+      on: "text"
+      to: "perplexity"
+  - category: "tag"
+    type: "ocroscope"
+    params:
+      on: "text"
+      to: "ocr_quality"
+output:
+  format: "parquet"
+  path: "<output_path>"
