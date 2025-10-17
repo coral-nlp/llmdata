@@ -143,6 +143,7 @@ make check
 
 If you use this software, please cite the corresponding paper:
 
+```bibtex
 @article{gienapp:2025d,
     title        = {{The German Commons -- 154 Billion Tokens of Openly Licensed Text for German Language Models}},
     author       = {Lukas Gienapp and
@@ -159,3 +160,4 @@ If you use this software, please cite the corresponding paper:
     volume       = {abs/2510.13996},
     url          = {https://arxiv.org/abs/2510.13996}
 }
+```
