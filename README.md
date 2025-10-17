@@ -139,3 +139,23 @@ uv run pytest
 make check
 ```
 
+## Citation
+
+If you use this software, please cite the corresponding paper:
+
+@article{gienapp:2025d,
+    title        = {{The German Commons -- 154 Billion Tokens of Openly Licensed Text for German Language Models}},
+    author       = {Lukas Gienapp and
+                    Christopher Schr\"oder and
+                    Stefan Schweter and
+                    Christopher Akiki and
+                    Ferdinand Schlatt and
+                    Arden Zimmermann and
+                    Phillipe Gen\^et and
+                    Martin Potthast},
+    year         = 2025,
+    month        = oct,
+    journal      = {CoRR},
+    volume       = {abs/2510.13996},
+    url          = {https://arxiv.org/abs/2510.13996}
+}
