@@ -3,7 +3,7 @@ name = "llmdata"
 version = "0.0.1"
 description = "A comprehensive Ray-based framework for large-scale LLM data preprocessing"
 readme = "README.md"
-requires-python = ">=3.10"
+requires-python = ">=3.10,<3.13"
 license = {text = "MIT"}
 authors = [
     {name = "LLMData Contributors"}
