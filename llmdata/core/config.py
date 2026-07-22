@@ -144,7 +144,7 @@ class PipelineConfig(BaseModel):
     description: str | None = Field(default=None, description="Description of what this pipeline does")
 
     # Data sources
-    input: ConnectorConfig = Field(default_factory=ConnectorConfig, description="Input data source configuration")
+    input: ConnectorConfig | None = Field(default=None, description="Input data source configuration")
 
     # Processing steps
     processors: list[ProcessorConfig] = Field(default_factory=list, description="List of processing steps")

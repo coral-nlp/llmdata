@@ -1,33 +1,21 @@
 from abc import ABC, abstractmethod
-from typing import TYPE_CHECKING, Any, TypeAlias
+from typing import Any, TypeAlias
 
-from pydantic import BaseModel, Field
-
-if TYPE_CHECKING:
-    from ray.data.aggregate import AggregateFnV2
-
+from ray.data.aggregate import AggregateFnV2
 
 Row: TypeAlias = dict[str, Any]
 
 
-class ReduceFn(ABC, BaseModel):
+class ReduceFn(AggregateFnV2):
     """Abstract base class for reduce operations."""
 
-    name: str = Field(title="The name of this reduce function.")
-    on: str = Field(title="The column to apply this function to.")
 
-    @abstractmethod
-    def __call__(self) -> "AggregateFnV2":
-        """Return a compatible aggregation function for ray to consume."""
-        raise NotImplementedError
-
-
-class MapFn(ABC, BaseModel):
+class MapFn(ABC):
     """Abstract base class for map operations."""
 
-    name: str = Field(title="The name of this map function.")
-    on: str = Field(title="The column to read input data from for the map operation.")
-    to: str = Field(title="The column to write the results of the map operation to.")
+    def __init__(self, name: str, *on: str) -> None:
+        self.name = name
+        self.on = on
 
     @abstractmethod
     def __call__(self, row: Row) -> Row:
@@ -35,12 +23,13 @@ class MapFn(ABC, BaseModel):
         raise NotImplementedError
 
 
-class FilterFn(ABC, BaseModel):
+class FilterFn(ABC):
     """Abstract base class for filter operations."""
 
-    name: str = Field(title="The name of this filter function.")
-    on: str = Field(title="The column to apply this filter function to.")
-    if_missing: bool = Field(default=True, title="The value the filter returns if encountering a missing value.")
+    def __init__(self, name: str, *on: str, if_missing: bool = True) -> None:
+        self.name = name
+        self.on = on
+        self.if_missing = if_missing
 
     @abstractmethod
     def __call__(self, row: Row) -> bool:

@@ -94,7 +94,7 @@ class TestFilterFn:
         filter_fn = TestFilterFn("test_filter")
 
         assert filter_fn.name == "test_filter"
-        assert filter_fn.on == []
+        assert filter_fn.on == ()
         assert filter_fn.if_missing is True
 
     def test_filterfn_abstract_call(self):
